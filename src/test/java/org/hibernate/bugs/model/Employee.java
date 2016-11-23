@@ -17,10 +17,7 @@ public class Employee {
 
 	@Embedded
 	@AssociationOverrides({
-		@AssociationOverride(
-				name = "experiences",
-				joinTable = @JoinTable(name = "employee_information_experiences")
-		)
+		@AssociationOverride(name = "experiences", joinTable = @JoinTable(name = "employee_information_experiences"))
 	})
 	private EmployeeInformation information = new EmployeeInformation();
 

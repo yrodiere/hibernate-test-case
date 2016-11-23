@@ -2,9 +2,12 @@ package org.hibernate.bugs;
 
 import org.hibernate.bugs.model.Employee;
 import org.hibernate.bugs.model.JobTitle;
+import org.hibernate.bugs.util.SchemaUtil;
 import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.testing.junit4.BaseCoreFunctionalTestCase;
+import org.hibernate.tool.util.MetadataHelper;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class MapKeyJoinColumnTestCase extends BaseCoreFunctionalTestCase {
@@ -18,11 +21,6 @@ public class MapKeyJoinColumnTestCase extends BaseCoreFunctionalTestCase {
 	}
 
 	@Override
-	protected String getBaseForMappings() {
-		return "org/hibernate/test/";
-	}
-
-	@Override
 	protected void configure(Configuration configuration) {
 		super.configure( configuration );
 		
@@ -32,7 +30,9 @@ public class MapKeyJoinColumnTestCase extends BaseCoreFunctionalTestCase {
 
 	@Test
 	public void test() {
-		// Just to add a breakpoint and manually inspect the schema.
+		Assert.assertTrue(
+				SchemaUtil.isColumnPresent("employee_information_experiences", "jobtitle_id", MetadataHelper.getMetadata(configuration()))
+		);
 	}
 
 }
