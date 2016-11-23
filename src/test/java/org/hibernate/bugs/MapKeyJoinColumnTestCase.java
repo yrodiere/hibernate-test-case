@@ -31,7 +31,46 @@ public class MapKeyJoinColumnTestCase extends BaseCoreFunctionalTestCase {
 	@Test
 	public void test() {
 		Assert.assertTrue(
-				SchemaUtil.isColumnPresent("employee_information_experiences", "jobtitle_id", MetadataHelper.getMetadata(configuration()))
+				SchemaUtil.isColumnPresent(
+						"employee_informationbefore_experiences",
+						"jobtitle_id",
+						MetadataHelper.getMetadata(configuration())
+				)
+		);
+		Assert.assertTrue(
+				SchemaUtil.isColumnPresent(
+						"employee_informationbefore_experiences",
+						"details",
+						MetadataHelper.getMetadata(configuration())
+				)
+		);
+		Assert.assertTrue(
+				SchemaUtil.isColumnPresent(
+						"employee_informationafter_experiences",
+						"jobtitle_id",
+						MetadataHelper.getMetadata(configuration())
+				)
+		);
+		Assert.assertTrue(
+				SchemaUtil.isColumnPresent(
+						"employee_informationafter_experiences",
+						"details",
+						MetadataHelper.getMetadata(configuration())
+				)
+		);
+		Assert.assertTrue(
+				SchemaUtil.isColumnPresent(
+						"Employee_experiences",
+						"jobtitle_id",
+						MetadataHelper.getMetadata(configuration())
+				)
+		);
+		Assert.assertTrue(
+				SchemaUtil.isColumnPresent(
+						"Employee_experiences",
+						"details",
+						MetadataHelper.getMetadata(configuration())
+				)
 		);
 	}
 

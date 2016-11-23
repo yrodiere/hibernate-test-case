@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
 import javax.persistence.FetchType;
@@ -18,6 +19,7 @@ public class EmployeeInformation implements Serializable {
 
 	@ElementCollection(fetch = FetchType.LAZY)
 	@MapKeyJoinColumn(name = "jobtitle_id")
+	@Column(name = "details")
 	private Map<JobTitle, String> experiences = new HashMap<>();
 
 	public Map<JobTitle, String> getExperiences() {

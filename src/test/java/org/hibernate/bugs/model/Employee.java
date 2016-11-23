@@ -17,9 +17,18 @@ public class Employee {
 
 	@Embedded
 	@AssociationOverrides({
-		@AssociationOverride(name = "experiences", joinTable = @JoinTable(name = "employee_information_experiences"))
+			@AssociationOverride(name = "experiences", joinTable = @JoinTable(name = "employee_informationbefore_experiences"))
 	})
-	private EmployeeInformation information = new EmployeeInformation();
+	private EmployeeInformation informationBefore = new EmployeeInformation();
+
+	@Embedded
+	@AssociationOverrides({
+			@AssociationOverride(name = "experiences", joinTable = @JoinTable(name = "employee_informationafter_experiences"))
+	})
+	private EmployeeInformation informationAfter = new EmployeeInformation();
+
+	@Embedded
+	private EmployeeInformation informationWithoutAssociationOverride = new EmployeeInformation();
 
 	public Long getId() {
 		return id;
@@ -29,15 +38,37 @@ public class Employee {
 		this.id = id;
 	}
 
-	public EmployeeInformation getInformation() {
-		if (information == null) {
-			information = new EmployeeInformation();
+	public EmployeeInformation getInformationBefore() {
+		if (informationBefore == null) {
+			informationBefore = new EmployeeInformation();
 		}
-		return information;
+		return informationBefore;
 	}
 
-	public void setInformation(EmployeeInformation information) {
-		this.information = information;
+	public void setInformationBefore(EmployeeInformation informationBefore) {
+		this.informationBefore = informationBefore;
+	}
+
+	public EmployeeInformation getInformationAfter() {
+		if (informationAfter == null) {
+			informationAfter = new EmployeeInformation();
+		}
+		return informationAfter;
+	}
+
+	public void setInformationAfter(EmployeeInformation informationAfter) {
+		this.informationAfter = informationAfter;
+	}
+
+	public EmployeeInformation getInformationWithoutAssociationOverride() {
+		if (informationWithoutAssociationOverride == null) {
+			informationWithoutAssociationOverride = new EmployeeInformation();
+		}
+		return informationWithoutAssociationOverride;
+	}
+
+	public void setInformationWithoutAssociationOverride(EmployeeInformation informationWithoutAssociationOverride) {
+		this.informationWithoutAssociationOverride = informationWithoutAssociationOverride;
 	}
 
 }
