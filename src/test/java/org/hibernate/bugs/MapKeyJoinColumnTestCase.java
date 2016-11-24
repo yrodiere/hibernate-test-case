@@ -23,13 +23,30 @@ public class MapKeyJoinColumnTestCase extends BaseCoreFunctionalTestCase {
 	@Override
 	protected void configure(Configuration configuration) {
 		super.configure( configuration );
-		
+
 		configuration.setProperty( AvailableSettings.SHOW_SQL, Boolean.TRUE.toString() );
 		configuration.setProperty( AvailableSettings.FORMAT_SQL, Boolean.TRUE.toString() );
 	}
 
 	@Test
 	public void test() {
+		// No @AssociationOverride: works fine
+		Assert.assertTrue(
+				SchemaUtil.isColumnPresent(
+						"Employee_experiences",
+						"jobtitle_id",
+						MetadataHelper.getMetadata(configuration())
+				)
+		);
+		Assert.assertTrue(
+				SchemaUtil.isColumnPresent(
+						"Employee_experiences",
+						"details",
+						MetadataHelper.getMetadata(configuration())
+				)
+		);
+
+		// With @AssociationOverride: the @MapKeyJoinColumn in the embedded is ignored
 		Assert.assertTrue(
 				SchemaUtil.isColumnPresent(
 						"employee_informationbefore_experiences",
@@ -54,20 +71,6 @@ public class MapKeyJoinColumnTestCase extends BaseCoreFunctionalTestCase {
 		Assert.assertTrue(
 				SchemaUtil.isColumnPresent(
 						"employee_informationafter_experiences",
-						"details",
-						MetadataHelper.getMetadata(configuration())
-				)
-		);
-		Assert.assertTrue(
-				SchemaUtil.isColumnPresent(
-						"Employee_experiences",
-						"jobtitle_id",
-						MetadataHelper.getMetadata(configuration())
-				)
-		);
-		Assert.assertTrue(
-				SchemaUtil.isColumnPresent(
-						"Employee_experiences",
 						"details",
 						MetadataHelper.getMetadata(configuration())
 				)
